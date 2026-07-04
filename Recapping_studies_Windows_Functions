@@ -1,0 +1,38 @@
+-- 1. view the TABLE
+SELECT *
+FROM baby_names;
+
+-- 2. order by popularity
+SELECT *
+FROM baby_names 
+ORDER BY Total DESC;
+
+--3 Add a popularity COLUMN
+
+SELECT Gender, Name, Total, 
+		ROW_NUMBER() OVER(ORDER BY Total DESC) AS Popularity --Window Function
+FROM baby_names;
+--Function: ROW_NUMBER() --OVER(ORDER BY Total DESC) = Window
+
+-- 4. try different FUNCTIONS
+
+SELECT Gender, Name, Total, 
+		ROW_NUMBER() OVER(ORDER BY Total DESC) AS Popularity,
+		RANK() OVER(ORDER BY Total DESC) AS Popularity_R,
+		DENSE_RANK() OVER(ORDER BY Total DESC) AS Popularity_DR
+FROM baby_names;
+
+-- 5. Try different windows
+
+SELECT Gender, Name, Total, 
+		ROW_NUMBER() OVER(PARTITION BY Gender ORDER BY Total DESC) AS Popularity
+FROM baby_names;
+
+-- 6. What are the top 3 most popular names for each gender?
+SELECT * FROM
+
+(SELECT Gender, Name, Total, 
+		ROW_NUMBER() OVER(PARTITION BY Gender ORDER BY Total DESC) AS Popularity
+FROM baby_names) AS pop
+
+WHERE Popularity <= 3;
