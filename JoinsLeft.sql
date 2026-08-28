@@ -15,3 +15,6 @@ LEFT JOIN Sales.Products AS P
 ON o.ProductID = p.ProductID
 LEFT JOIN Sales.Employees AS E
 ON o.SalesPersonID = e.EmployeeID
+
+--End of content on JOINs, including INNER, LEFT, RIGHT, FULL, CROSS and Anti JOINs. 
+--And also which JOIN to use in each situation and also how to join multiple tables. (Unfortunately I only remembered to save the files in the last part)
