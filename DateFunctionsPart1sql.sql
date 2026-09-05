@@ -72,3 +72,17 @@ OrderID,
 CreationTime,
 EOMONTH(CreationTime) EndOfMonth
 FROM Sales.Orders
+
+--How many orders were placed each year?
+SELECT
+YEAR(OrderDate),
+COUNT(*) NrOrders
+FROM Sales.Orders
+GROUP BY YEAR(OrderDate)
+
+--How many orders were placed each month?
+SELECT
+DATENAME(month, OrderDate) AS OrderDate,
+COUNT(*) NrOrders
+FROM Sales.Orders
+GROUP BY DATENAME(month, OrderDate)
