@@ -86,3 +86,11 @@ DATENAME(month, OrderDate) AS OrderDate,
 COUNT(*) NrOrders
 FROM Sales.Orders
 GROUP BY DATENAME(month, OrderDate)
+
+--Data Filtering
+
+--TASK: Show all orders that were placed during the month of February
+SELECT *
+FROM SALES.Orders
+WHERE MONTH(OrderDate) = 2 --Using integer is faster than using a string
+--Avoid using DATENAME for filtering data, instead use DATEPART
